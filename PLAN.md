@@ -151,7 +151,7 @@ BG3 資料量龐大，**第一版先做「可計算傷害」所需的最小集�
 - [x] Build 的 URL 序列化分享（base64url）+ localStorage 存檔
 - [x] RWD（手機版導覽列修正，各頁已響應式）
 - [x] 產品建置驗證（vite build，base: './'）
-- [ ] 部署到 GitHub Pages / Vercel（需要 GitHub repo 或 Vercel 帳號）
+- [x] 部署到 GitHub Pages：https://yunxi2006.github.io/bg3build/（推送 master 即自動部署）
 
 ### 後續待辦（backlog）
 - [ ] 已知/已準備法術的逐一挑選（各職業習得規則）

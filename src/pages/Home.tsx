@@ -30,7 +30,7 @@ export default function Home() {
             開始模擬你的 Build →
           </Link>
         </div>
-        <p className="mt-3 text-sm text-zinc-500">傷害期望（DPR）計算開發中（Phase 4）。</p>
+        <p className="mt-3 text-sm text-zinc-500">模擬器內建傷害期望（DPR）計算與分享連結。</p>
       </section>
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {CARDS.map((c) => (
