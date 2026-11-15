@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NAV_ITEMS = [
+const NAV_ITEMS: { to: string; label: string; end?: boolean; highlight?: boolean }[] = [
   { to: '/', label: '首頁', end: true },
   { to: '/classes', label: '職業' },
   { to: '/races', label: '種族' },
   { to: '/spells', label: '法術' },
   { to: '/skills', label: '技能與背景' },
+  { to: '/builder', label: 'Build 模擬器', highlight: true },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -27,7 +28,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                   `rounded-md px-3 py-1.5 text-sm transition-colors ${
                     isActive
                       ? 'bg-amber-500/15 text-amber-300'
-                      : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                      : item.highlight
+                        ? 'text-amber-400/80 hover:bg-zinc-800 hover:text-amber-300'
+                        : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
                   }`
                 }
               >

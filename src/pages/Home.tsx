@@ -22,9 +22,15 @@ export default function Home() {
           瀏覽所有職業、種族與技能資料，模擬你的角色養成路線，
           即時檢視取得的能力與傷害期望。
         </p>
-        <p className="mt-3 text-sm text-zinc-500">
-          Build 模擬器與傷害期望計算開發中（Phase 3 / Phase 4）。
-        </p>
+        <div className="mt-6">
+          <Link
+            to="/builder"
+            className="inline-block rounded-lg bg-amber-500/20 px-6 py-2.5 font-semibold text-amber-300 transition-colors hover:bg-amber-500/30"
+          >
+            開始模擬你的 Build →
+          </Link>
+        </div>
+        <p className="mt-3 text-sm text-zinc-500">傷害期望（DPR）計算開發中（Phase 4）。</p>
       </section>
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {CARDS.map((c) => (
