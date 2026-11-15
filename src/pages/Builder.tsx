@@ -8,6 +8,7 @@ import { SKILL_MAP } from '../data/skills';
 import { FEATS, FEAT_MAP } from '../data/feats';
 import { ABILITY_NAMES, type AbilityKey } from '../types';
 import CharacterPanel from '../components/CharacterPanel';
+import DprPanel from '../components/DprPanel';
 
 const ABILITY_ORDER: AbilityKey[] = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
 
@@ -40,7 +41,8 @@ export default function Builder() {
           <SkillSection />
           <LevelSection />
         </div>
-        <div className="lg:sticky lg:top-20 lg:self-start">
+        <div className="space-y-4 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:pr-1">
+          <DprPanel ch={ch} build={build} />
           <CharacterPanel ch={ch} />
         </div>
       </div>
