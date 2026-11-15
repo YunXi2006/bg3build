@@ -79,6 +79,43 @@ export interface RaceDef {
   subraces: Subrace[];
 }
 
+export type SpellSchool = '防護' | '咒法' | '預言' | '惑控' | '塑能' | '幻術' | '死靈' | '變化';
+
+export type SpellAction = 'action' | 'bonus' | 'reaction';
+
+/**
+ * 攻擊判定方式：
+ * melee / ranged = 法術攻擊檢定；save = 目標豁免；auto = 自動命中；none = 無攻擊判定
+ */
+export type SpellAttack = 'melee' | 'ranged' | 'save' | 'auto' | 'none';
+
+export interface SpellDamage {
+  /** 傷害骰，如 "8d6"、"3d4+3"；多道射線類記錄單發傷害，於 desc 說明 */
+  dice: string;
+  type: string;
+  /** 每升一環額外增加的傷害骰（戲法不升環，改為 5／10 級角色等級時 +1 骰） */
+  upcastDice?: string;
+}
+
+export interface SpellDef {
+  id: string;
+  name: string;
+  nameEn: string;
+  /** 0 = 戲法 */
+  level: number;
+  school: SpellSchool;
+  action: SpellAction;
+  concentration: boolean;
+  attack: SpellAttack;
+  save?: AbilityKey;
+  /** 豁免成功仍受半傷 */
+  halfOnSave?: boolean;
+  damage?: SpellDamage;
+  /** 可習得此法術的職業 id（不含子職業額外法術） */
+  classes: string[];
+  desc: string;
+}
+
 export interface SkillDef {
   id: string;
   name: string;

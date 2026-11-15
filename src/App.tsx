@@ -6,6 +6,7 @@ import ClassDetail from './pages/ClassDetail';
 import RaceList from './pages/RaceList';
 import RaceDetail from './pages/RaceDetail';
 import SkillsPage from './pages/SkillsPage';
+import SpellList from './pages/SpellList';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/classes/:id" element={<ClassDetail />} />
         <Route path="/races" element={<RaceList />} />
         <Route path="/races/:id" element={<RaceDetail />} />
+        <Route path="/spells" element={<SpellList />} />
         <Route path="/skills" element={<SkillsPage />} />
       </Routes>
     </Layout>

@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { to: '/', label: '首頁', end: true },
   { to: '/classes', label: '職業' },
   { to: '/races', label: '種族' },
+  { to: '/spells', label: '法術' },
   { to: '/skills', label: '技能與背景' },
 ];
 
