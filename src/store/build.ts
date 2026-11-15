@@ -36,6 +36,13 @@ export interface BuildState {
   addLevel: (classId: string) => void;
   removeLastLevel: () => void;
   updateLevel: (index: number, patch: Partial<LevelChoice>) => void;
+  /** 由分享連結載入完整 Build */
+  load: (s: {
+    raceId?: string; subraceId?: string; backgroundId?: string;
+    abilities: Record<AbilityKey, number>;
+    bonus2?: AbilityKey; bonus1?: AbilityKey;
+    skillIds: string[]; levels: LevelChoice[];
+  }) => void;
   reset: () => void;
 }
 
@@ -88,6 +95,17 @@ export const useBuildStore = create<BuildState>()(
         set((s) => ({
           levels: s.levels.map((lv, i) => (i === index ? { ...lv, ...patch } : lv)),
         })),
+      load: (s) =>
+        set({
+          raceId: s.raceId,
+          subraceId: s.subraceId,
+          backgroundId: s.backgroundId,
+          abilities: { ...s.abilities },
+          bonus2: s.bonus2,
+          bonus1: s.bonus1,
+          skillIds: [...s.skillIds],
+          levels: [...s.levels],
+        }),
       reset: () =>
         set({
           raceId: undefined,

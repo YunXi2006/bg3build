@@ -147,10 +147,16 @@ BG3 資料量龐大，**第一版先做「可計算傷害」所需的最小集�
 - [x] 26 種武器資料；武器/法術模式切換、目標 AC 與豁免加值、優勢/劣勢開關
 - [x] DPR vs AC（豁免型為 vs 豁免加值）折線圖（Recharts），即時跟隨 Build 變動
 
-### Phase 5 — 打磨與部署（約 2~3 天）
-- [ ] Build 的 URL 序列化分享 + localStorage 存檔
-- [ ] RWD（手機版佈局）
-- [ ] 部署到 GitHub Pages / Vercel
+### Phase 5 — 打磨與部署
+- [x] Build 的 URL 序列化分享（base64url）+ localStorage 存檔
+- [x] RWD（手機版導覽列修正，各頁已響應式）
+- [x] 產品建置驗證（vite build，base: './'）
+- [ ] 部署到 GitHub Pages / Vercel（需要 GitHub repo 或 Vercel 帳號）
+
+### 後續待辦（backlog）
+- [ ] 已知/已準備法術的逐一挑選（各職業習得規則）
+- [ ] 裝備／護甲對 AC 的影響
+- [ ] 多 Build 並排比較 DPR 曲線
 
 **總估時：約 3~4 週**（兼職開發；全職可壓到 2 週左右）。
 

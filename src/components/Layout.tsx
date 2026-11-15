@@ -14,11 +14,11 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-10 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3">
-          <NavLink to="/" className="text-lg font-bold tracking-wide text-amber-400">
-            BG3 Build 模擬器
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:gap-6">
+          <NavLink to="/" className="shrink-0 whitespace-nowrap text-base font-bold tracking-wide text-amber-400 sm:text-lg">
+            BG3 Build
           </NavLink>
-          <nav className="flex gap-1">
+          <nav className="flex gap-1 overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
             {NAV_ITEMS.map((item) => (
               <NavLink
                 key={item.to}

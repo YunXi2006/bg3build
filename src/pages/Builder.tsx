@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useBuildStore, pointsSpent, POINT_BUY_TOTAL, type LevelChoice } from '../store/build';
+import { encodeBuild, decodeBuild } from '../store/share';
 import { deriveCharacter, meetsMulticlassReq, featLevelsOf } from '../engine/derive';
 import { RACES, RACE_MAP } from '../data/races';
 import { BACKGROUNDS } from '../data/backgrounds';
@@ -14,24 +15,55 @@ const ABILITY_ORDER: AbilityKey[] = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
 
 export default function Builder() {
   const build = useBuildStore();
+  const [copied, setCopied] = useState(false);
+
+  // 從分享連結載入 Build，並把參數從網址移除
+  useEffect(() => {
+    const m = location.hash.match(/[?&]b=([^&]+)/);
+    if (!m) return;
+    const data = decodeBuild(m[1]);
+    if (data) useBuildStore.getState().load(data);
+    history.replaceState(null, '', `${location.pathname}${location.search}#/builder`);
+  }, []);
+
   const ch = useMemo(
     () => deriveCharacter(build),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [build.raceId, build.subraceId, build.backgroundId, build.abilities, build.bonus2, build.bonus1, build.skillIds, build.levels],
   );
 
+  const share = async () => {
+    const code = encodeBuild(build);
+    const url = `${location.origin}${location.pathname}#/builder?b=${code}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      prompt('複製此分享連結：', url);
+    }
+  };
+
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-100">Build 模擬器</h1>
-        <button
-          onClick={() => {
-            if (confirm('確定要清空目前的 Build 嗎？')) build.reset();
-          }}
-          className="rounded-md border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 hover:border-red-500/50 hover:text-red-300"
-        >
-          重置
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={share}
+            className="rounded-md bg-amber-500/20 px-3 py-1.5 text-sm text-amber-300 hover:bg-amber-500/30"
+          >
+            {copied ? '已複製連結 ✓' : '分享連結'}
+          </button>
+          <button
+            onClick={() => {
+              if (confirm('確定要清空目前的 Build 嗎？')) build.reset();
+            }}
+            className="rounded-md border border-zinc-700 px-3 py-1.5 text-sm text-zinc-400 hover:border-red-500/50 hover:text-red-300"
+          >
+            重置
+          </button>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
