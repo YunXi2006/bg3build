@@ -9,6 +9,15 @@ body {
   font-family: "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 }
 
+/* 原生下拉選單的選項面板使用深色 */
+select {
+  color-scheme: dark;
+}
+select option {
+  background-color: #18181b;
+  color: #e4e4e7;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
